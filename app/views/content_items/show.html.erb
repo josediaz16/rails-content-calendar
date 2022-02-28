@@ -10,5 +10,10 @@
 <hr>
 
 <% unless @content_item.social_networks.blank? %>
-Publish on: <%= @content_item.social_networks.map(&:description).join(',  ') %>
+  <h3>Publish on: </h3>
+  <ul>
+    <% @content_item.publishing_targets.includes(:social_network).each do |p_target|%>
+      <li> <%= p_target.social_network.description%>: <%= p_target.publishing_date %></li>
+    <% end %>
+  </ul>
 <% end %>

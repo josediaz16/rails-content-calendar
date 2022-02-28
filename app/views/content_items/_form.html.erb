@@ -12,12 +12,16 @@
   <hr>
 
   <ul>
-    <% content_item.user.social_networks.each do |network| %>
+    <% content_item.user.social_networks.each_with_index do |network, index| %>
       <li>
         <%= label_tag do %>
-          <%= check_box_tag 'content_item[social_network_ids][]', network.id, content_item.social_network_ids.include?(network.id) %>
+          <%= check_box_tag "content_item[publishing_targets_attributes][#{index}][social_network_id]", network.id, content_item.social_network_ids.include?(network.id) %>
           <%= network.description %>
         <% end %>
+        <div>
+          <%= form.label :publishing_date %>
+          <%= select_datetime 1.day.from_now, prefix: "content_item[publishing_targets_attributes][#{index}][publishing_date]" %>
+        </div>
       </li>
     <% end %>
   </ul>

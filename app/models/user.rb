@@ -8,4 +8,5 @@ class User < ApplicationRecord
 
   has_many :content_items, dependent: :destroy
   has_many :social_networks, dependent: :destroy
+  has_many :publishing_targets, through: :content_items
 end
