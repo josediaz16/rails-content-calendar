@@ -1,6 +1,31 @@
 <h1>Content Items</h1>
 
 <%= link_to 'Add Content item', new_content_item_path %>
+<br>
+<br>
+
+<%= form_with url: content_items_path, method: :get do |form| %>
+  <%= form.text_field :text,  placeholder: 'Search', value: params[:text] %>
+  <%= form.select :network, SocialNetwork.available_options, include_blank: true, selected: params[:network] %>
+  <%= form.submit 'Search' %>
+<% end %>
+
+<hr>
+<br>
+
+<%= month_calendar(attribute: :publishing_date, events: @events) do |date, p_targets| %>
+  <div class="at-<%=date.to_s%>">
+    <%= date %>
+    <ul>
+      <% p_targets.each do |p_target|  %>
+        <li>
+          <i class="<%= "fa fa-#{p_target.social_network.description.downcase}" %>">
+        </i>
+        <%= link_to(p_target.content_item.title, content_item_path(p_target.content_item)) %>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
 
 <ul id="content-items">
   <%= render partial: 'content_item', collection: @content_items %>

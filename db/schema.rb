@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_09_04_231010) do
+ActiveRecord::Schema.define(version: 2022_02_28_183610) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -66,6 +66,7 @@ ActiveRecord::Schema.define(version: 2021_09_04_231010) do
     t.bigint "social_network_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.datetime "publishing_date"
     t.index ["content_item_id"], name: "index_publishing_targets_on_content_item_id"
     t.index ["social_network_id"], name: "index_publishing_targets_on_social_network_id"
   end
