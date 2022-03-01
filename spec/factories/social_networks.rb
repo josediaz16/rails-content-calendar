@@ -2,7 +2,7 @@
 
 FactoryBot.define do
   factory :social_network do
-    description { 'MyString' }
+    description { 'Facebook' }
     user { nil }
   end
 end

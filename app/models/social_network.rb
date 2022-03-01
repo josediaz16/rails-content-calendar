@@ -6,6 +6,8 @@ class SocialNetwork < ApplicationRecord
   has_many :publishing_targets, dependent: :destroy
   has_many :content_items, through: :publishing_targets
 
+  validates :description, inclusion: { in: ALLOWED_NETWORKS }
+
   def self.available_options
     ALLOWED_NETWORKS
   end
